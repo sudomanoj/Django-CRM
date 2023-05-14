@@ -1,0 +1,32 @@
+{% extends 'website/base.html' %}
+{% block content %}
+<h1>Customer Record:</h1>
+
+<div class="card">
+    <div class="card-header">
+        {{record.first_name}} {{record.last_name}}
+    </div>
+    <div class="card-body">
+      <p class="card-text">
+        <strong>ID: </strong> {{record.id}}  <br>
+        <strong>Email:</strong> {{record.email}}<br>
+        <strong>Phone: </strong> {{record.phone}}<br>
+        <strong>City: </strong> {{record.city}}<br>
+        <strong>Zipcode: </strong> {{record.zipcode}}<br>
+        <strong>State: </strong> {{record.state}}<br>
+        <strong>Created at: </strong> {{record.created_at}}<br>
+    </p>
+
+      <a href="{% url 'home' %}" class="btn btn-primary" style="display:inline-block;">Back To Home</a>
+      <a href="{% url 'update_record' record.id%}" class="btn btn-success" style="display:inline-block;">Update</a>
+    <form action="{% url 'delete_record' record.id %}" style="display:inline-block;" method="post">
+      {% csrf_token %}
+     <input type="submit" class='btn btn-danger' value="Delete">
+    </form>
+  
+    </div>
+  </div>
+
+    
+
+{% endblock content %}
